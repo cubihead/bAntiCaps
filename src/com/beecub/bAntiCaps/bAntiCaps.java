@@ -21,6 +21,7 @@ public class bAntiCaps extends JavaPlugin {
 	public static Configuration conf;
 	public int percentage;
 	public int wordcount;
+	public int charactercount;
 	public boolean kick;
 	public boolean tolowercase;
 	public String message;

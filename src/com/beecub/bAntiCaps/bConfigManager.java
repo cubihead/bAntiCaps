@@ -20,8 +20,7 @@ public class bConfigManager {
         if (f.exists())
         {
         	conf = new Configuration(f);
-        	conf.load();
-        	
+        	conf.load();        	
         }
         else {
         	this.confFile = new File(bAntiCaps.getDataFolder(), "config.yml");
@@ -29,21 +28,21 @@ public class bConfigManager {
             conf.setProperty("capslock.reaction.message", "&6Do not write capslock text!");
             conf.setProperty("capslock.reaction.tolowercase", true);
             conf.setProperty("capslock.reaction.kick", false);
-            conf.setProperty("capslock.condition.wordcount", 3);
+            conf.setProperty("capslock.condition.wordcount", 0);
+            conf.setProperty("capslock.condition.charactercount", 6);
             conf.setProperty("capslock.condition.percentage", 50);
-            
             conf.save();
-        }
-        
+        }        
     }    
     
 	static void load() {
     	conf.load();
     	bAntiCaps.percentage = conf.getInt("capslock.condition.percentage", 50);
-    	bAntiCaps.wordcount = conf.getInt("capslock.condition.wordcount", 3);
+    	bAntiCaps.wordcount = conf.getInt("capslock.condition.wordcount", 0);
     	bAntiCaps.kick = conf.getBoolean("capslock.reaction.kick", false);
     	bAntiCaps.tolowercase = conf.getBoolean("capslock.reaction.tolowercase", true);
     	bAntiCaps.message = conf.getString("capslock.reaction.message", "&6Do not write capslock text!");
+    	bAntiCaps.charactercount = conf.getInt("capslock.condition.charactercount", 6);
     }
 	
 	static void reload() {

@@ -24,27 +24,29 @@ public class bAntiCapsPlayerListener extends PlayerListener {
 		countChars = message.length();
 		
 		if(countChars > 0) {
-			for(int i = 0; i < countChars; i++) {
-				char c = message.charAt(i);
-				ch = Character.toString(c);			
-				if(ch.matches("[A-Z]")) {
-					countCharsCaps++;
-				}
-				if(c == ' ') {
-					countWords++;
-				}
-			}
-			if(countWords >= plugin.wordcount) {
-				if(100/countChars*countCharsCaps >= plugin.percentage) {
-					if(plugin.tolowercase) {
-						message = message.toLowerCase();
-						event.setMessage(message);
+			if(countChars > plugin.charactercount) {
+				for(int i = 0; i < countChars; i++) {
+					char c = message.charAt(i);
+					ch = Character.toString(c);			
+					if(ch.matches("[A-Z]")) {
+						countCharsCaps++;
 					}
-					if(plugin.message != null || plugin.message != "") {
-						bChat.sendMessageToPlayer(player, plugin.message);
+					if(c == ' ') {
+						countWords++;
 					}
-					if(plugin.kick){
-						player.kickPlayer(plugin.message);
+				}
+				if(countWords >= plugin.wordcount) {
+					if(100/countChars*countCharsCaps >= plugin.percentage) {
+						if(plugin.tolowercase) {
+							message = message.toLowerCase();
+							event.setMessage(message);
+						}
+						if(plugin.message != null || plugin.message != "") {
+							bChat.sendMessageToPlayer(player, plugin.message);
+						}
+						if(plugin.kick){
+							player.kickPlayer(plugin.message);
+						}
 					}
 				}
 			}
